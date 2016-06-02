@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // Take advantage of eager loading with 'sources' relationship
+    $videos = \App\Video::with('sources')->get();
+    return view('index', compact('videos'));
 });
+
+Route::resource('video', 'VideoController');

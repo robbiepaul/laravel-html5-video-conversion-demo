@@ -15,8 +15,9 @@ class CreateVideoSourcesTable extends Migration
         Schema::create('video_sources', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('video_id')->unsigned();
-            $table->foreign('user_id')
-                  ->references('id')->on('videos')
+            $table->foreign('video_id')
+                  ->references('id')
+                  ->on('videos')
                   ->onDelete('cascade');
             $table->string('format');
             $table->string('video_path');
